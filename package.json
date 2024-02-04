@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "test",
-    "start": "node ./index.js"
+    "start": "node ./index.js",
+    "mstart": "npm run start -- --username=Sergey"
   },
   "repository": {
     "type": "git",
