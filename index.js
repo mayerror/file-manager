@@ -4,16 +4,15 @@ import commandHandler from "./src/modules/commandHandler.js";
 import os from "node:os";
 
 const userHomeDir = os.homedir();
-let currentDir = userHomeDir;
+global.currentDir = userHomeDir;
 
 let username = "";
-global.currentDir = "byby";
 
 process.argv.forEach((arg) => {
   if (arg.includes("--username=")) {
     username = arg.split("=")[1];
     output.write(`Welcome to the File Manager, ${username}!\n`);
-    output.write(`You are currently in ${currentDir}\n`);
+    output.write(`You are currently in ${global.currentDir}\n`);
   }
 });
 

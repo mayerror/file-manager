@@ -1,6 +1,13 @@
 function commandHandler(command) {
   if (command === ".exit") return false;
-  // global.currentDir = "abracadabra";
+  switch (command) {
+    case 1:
+      break;
+
+    default:
+      console.log("Invalid input");
+      break;
+  }
   return true;
 }
 
