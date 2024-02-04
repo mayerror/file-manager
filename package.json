@@ -1,0 +1,17 @@
+{
+  "name": "file-manager",
+  "version": "1.0.0",
+  "description": "Second assignment in the node js course",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "test",
+    "start": "node ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "file-manager"
+  },
+  "author": "Sergey Masiuk",
+  "license": "ISC"
+}
