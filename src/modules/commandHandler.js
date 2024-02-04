@@ -1,7 +1,10 @@
+import path from "node:path";
+
 function commandHandler(command) {
   if (command === ".exit") return false;
   switch (command) {
-    case 1:
+    case "up":
+      globalThis.currentDir = path.dirname(globalThis.currentDir);
       break;
 
     default:
