@@ -6,7 +6,6 @@ import catenate from "./catenate.js";
 async function commandHandler(command) {
   if (command === ".exit") return false;
   const params = command.split(" ");
-  console.log(params.length);
   try {
     switch (params.length) {
       case 1:
