@@ -1,7 +1,8 @@
+import os from "node:os";
+import process from "node:process";
 import readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
-import commandHandler from "./src/modules/commandHandler.js";
-import os from "node:os";
+import commandHandler from "./modules/commandHandler.js";
 
 const userHomeDir = os.homedir();
 globalThis.currentDir = userHomeDir;
@@ -19,13 +20,10 @@ process.argv.forEach((arg) => {
 // readline interaction
 const rl = readline.createInterface({ input, output });
 
-rl.on("line", (line) => {
+rl.on("line", async (line) => {
   const command = line.trim();
-  const result = commandHandler(command);
-
-  // output.write(`You are currently in ${currentDir}\n`);
+  const result = await commandHandler(command);
   output.write(`You are currently in ${globalThis.currentDir}\n`);
-
   if (!result) {
     rl.close();
   }
