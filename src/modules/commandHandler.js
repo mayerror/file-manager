@@ -40,7 +40,7 @@ async function oneParamHandler(params) {
         break;
     }
   } catch (error) {
-    console.warn("Operation failed");
+    console.log("Operation failed");
   }
 }
 
@@ -58,7 +58,7 @@ async function twoParamHandler(params) {
         break;
     }
   } catch (error) {
-    console.warn("Operation failed");
+    console.log("Operation failed");
   }
 }
 
