@@ -1,6 +1,7 @@
 import path from "node:path";
 import changeDir from "./changeDir.js";
 import listFiles from "./listFiles.js";
+import catenate from "./catenate.js";
 
 async function commandHandler(command) {
   if (command === ".exit") return false;
@@ -49,7 +50,9 @@ async function twoParamHandler(params) {
       case "cd":
         await changeDir(params[1]);
         break;
-
+      case "cat":
+        await catenate(params[1]);
+        break;
       default:
         console.log("Invalid input");
         break;
