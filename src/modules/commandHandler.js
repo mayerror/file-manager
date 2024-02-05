@@ -1,5 +1,6 @@
 import path from "node:path";
 import changeDir from "./changeDir.js";
+import listFiles from "./listFiles.js";
 
 async function commandHandler(command) {
   if (command === ".exit") return false;
@@ -28,6 +29,9 @@ async function oneParamHandler(params) {
     switch (params[0]) {
       case "up":
         globalThis.currentDir = path.dirname(globalThis.currentDir);
+        break;
+      case "ls":
+        await listFiles();
         break;
 
       default:
