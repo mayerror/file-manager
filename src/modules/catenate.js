@@ -11,17 +11,19 @@ async function catenate(pathToFile) {
       } else {
         path = resolve(join(globalThis.currentDir, pathToFile));
       }
-      const stats = fs.stat(path);
-      if (stats.isFile()) {
-        const readStream = fs.createReadStream(path, "utf8");
-        readStream.pipe(stdout);
-        readStream.on("end", () => {
-          console.log("\n");
-          res();
-        });
-      } else {
-        rej();
-      }
+
+      fs.stat(path, (err) => {
+        if (err) {
+          rej();
+        } else {
+          const readStream = fs.createReadStream(path, "utf8");
+          readStream.pipe(stdout);
+          readStream.on("end", () => {
+            console.log("\n");
+            res();
+          });
+        }
+      });
     } catch (error) {
       rej(error.code);
     }
