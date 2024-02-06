@@ -1,16 +1,11 @@
 import fs from "node:fs";
-import { resolve, isAbsolute, join } from "node:path";
 import { stdout } from "node:process";
+import createAbsPath from "./createAbsPath.js";
 
 async function catenate(pathToFile) {
   const promise = await new Promise((res, rej) => {
     try {
-      let path = "";
-      if (isAbsolute(pathToFile)) {
-        path = pathToFile;
-      } else {
-        path = resolve(join(globalThis.currentDir, pathToFile));
-      }
+      const path = createAbsPath(pathToFile);
 
       fs.stat(path, (err) => {
         if (err) {

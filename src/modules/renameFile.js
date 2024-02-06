@@ -1,15 +1,12 @@
-import { resolve, isAbsolute, join, dirname } from "node:path";
+import { join, dirname } from "node:path";
 import { stat, rename } from "node:fs/promises";
 import fs from "node:fs";
+import createAbsPath from "./createAbsPath.js";
 
 async function renameFile(pathToFile, newFile) {
   try {
-    let path = "";
-    if (isAbsolute(pathToFile)) {
-      path = pathToFile;
-    } else {
-      path = resolve(join(globalThis.currentDir, pathToFile));
-    }
+    const path = createAbsPath(pathToFile);
+
     const stats = await stat(path);
     if (stats.isFile()) {
       const dir = dirname(path);
