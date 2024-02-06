@@ -4,6 +4,7 @@ import listFiles from "./listFiles.js";
 import catenate from "./catenate.js";
 import createFile from "./createFile.js";
 import renameFile from "./renameFile.js";
+import copyFile from "./copyFile.js";
 
 async function commandHandler(command) {
   if (command === ".exit") return false;
@@ -74,6 +75,9 @@ async function threeParamHandler(params) {
     switch (params[0]) {
       case "rn":
         await renameFile(params[1], params[2]);
+        break;
+      case "cp":
+        await copyFile(params[1], params[2]);
         break;
       default:
         console.log("Invalid input");
