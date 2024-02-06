@@ -5,9 +5,11 @@ async function createFile(fileName) {
   const promise = await new Promise((res, rej) => {
     try {
       const path = join(globalThis.currentDir, fileName);
-      const writeStream = fs.createWriteStream(path);
+      const writeStream = fs.createWriteStream(path, { flags: "ax" });
       writeStream.end();
-      res();
+      writeStream.on("close", () => {
+        res();
+      });
     } catch (error) {
       rej();
     }
