@@ -3,7 +3,7 @@ import zlib from "node:zlib";
 import { basename, join } from "node:path";
 import createAbsPath from "./createAbsPath.js";
 
-async function compress(pathToFile, pathToDir) {
+async function decompress(pathToFile, pathToDir) {
   const promise = await new Promise((res, rej) => {
     const absPathToFile = createAbsPath(pathToFile);
     const absPathToDir = createAbsPath(pathToDir);
@@ -16,21 +16,15 @@ async function compress(pathToFile, pathToDir) {
           if (err) {
             rej();
           } else {
-            const fileName = basename(absPathToFile);
-            const absPathToNewFile = join(absPathToDir, fileName + ".br");
+            const fileName = basename(absPathToFile).slice(0, -3);
+            const absPathToNewFile = join(absPathToDir, fileName);
 
             const readStream = fs.createReadStream(absPathToFile);
-            const bcStream = zlib.createBrotliCompress({
-              params: {
-                [zlib.constants.BROTLI_PARAM_QUALITY]: 4,
-                [zlib.constants.BROTLI_PARAM_MODE]:
-                  zlib.constants.BROTLI_MODE_TEXT,
-              },
-            });
+            const bdStream = zlib.createBrotliDecompress();
             const writeStream = fs.createWriteStream(absPathToNewFile, {
               flags: "a",
             });
-            readStream.pipe(bcStream).pipe(writeStream);
+            readStream.pipe(bdStream).pipe(writeStream);
             writeStream.on("close", () => {
               res();
             });
@@ -45,4 +39,4 @@ async function compress(pathToFile, pathToDir) {
   return promise;
 }
 
-export default compress;
+export default decompress;

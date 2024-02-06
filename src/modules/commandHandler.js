@@ -10,6 +10,7 @@ import moveFile from "./moveFile.js";
 import getOSInfo from "./getOSInfo.js";
 import hashFile from "./hashFile.js";
 import compress from "./compress.js";
+import decompress from "./decompress.js";
 
 async function commandHandler(command) {
   if (command === ".exit") return false;
@@ -98,6 +99,9 @@ async function threeParamHandler(params) {
         break;
       case "compress":
         await compress(params[1], params[2]);
+        break;
+      case "decompress":
+        await decompress(params[1], params[2]);
         break;
       default:
         console.log("Invalid input");
