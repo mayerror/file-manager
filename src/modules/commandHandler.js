@@ -6,6 +6,7 @@ import createFile from "./createFile.js";
 import renameFile from "./renameFile.js";
 import copyFile from "./copyFile.js";
 import deleteFile from "./deletFile.js";
+import moveFile from "./moveFile.js";
 
 async function commandHandler(command) {
   if (command === ".exit") return false;
@@ -82,6 +83,9 @@ async function threeParamHandler(params) {
         break;
       case "cp":
         await copyFile(params[1], params[2]);
+        break;
+      case "mv":
+        await moveFile(params[1], params[2]);
         break;
       default:
         console.log("Invalid input");
