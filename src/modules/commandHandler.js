@@ -7,6 +7,7 @@ import renameFile from "./renameFile.js";
 import copyFile from "./copyFile.js";
 import deleteFile from "./deletFile.js";
 import moveFile from "./moveFile.js";
+import getOSInfo from "./getOSInfo.js";
 
 async function commandHandler(command) {
   if (command === ".exit") return false;
@@ -65,6 +66,9 @@ async function twoParamHandler(params) {
         break;
       case "rm":
         await deleteFile(params[1]);
+        break;
+      case "os":
+        getOSInfo(params[1]);
         break;
       default:
         console.log("Invalid input");
