@@ -9,6 +9,7 @@ import deleteFile from "./deletFile.js";
 import moveFile from "./moveFile.js";
 import getOSInfo from "./getOSInfo.js";
 import hashFile from "./hashFile.js";
+import compress from "./compress.js";
 
 async function commandHandler(command) {
   if (command === ".exit") return false;
@@ -94,6 +95,9 @@ async function threeParamHandler(params) {
         break;
       case "mv":
         await moveFile(params[1], params[2]);
+        break;
+      case "compress":
+        await compress(params[1], params[2]);
         break;
       default:
         console.log("Invalid input");
