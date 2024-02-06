@@ -8,6 +8,7 @@ import copyFile from "./copyFile.js";
 import deleteFile from "./deletFile.js";
 import moveFile from "./moveFile.js";
 import getOSInfo from "./getOSInfo.js";
+import hashFile from "./hashFile.js";
 
 async function commandHandler(command) {
   if (command === ".exit") return false;
@@ -69,6 +70,9 @@ async function twoParamHandler(params) {
         break;
       case "os":
         getOSInfo(params[1]);
+        break;
+      case "hash":
+        await hashFile(params[1]);
         break;
       default:
         console.log("Invalid input");
