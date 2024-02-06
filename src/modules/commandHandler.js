@@ -5,6 +5,7 @@ import catenate from "./catenate.js";
 import createFile from "./createFile.js";
 import renameFile from "./renameFile.js";
 import copyFile from "./copyFile.js";
+import deleteFile from "./deletFile.js";
 
 async function commandHandler(command) {
   if (command === ".exit") return false;
@@ -60,6 +61,9 @@ async function twoParamHandler(params) {
         break;
       case "add":
         await createFile(params[1]);
+        break;
+      case "rm":
+        await deleteFile(params[1]);
         break;
       default:
         console.log("Invalid input");
