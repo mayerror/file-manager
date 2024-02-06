@@ -12,7 +12,7 @@ function getOSInfo(arg) {
         console.log(`CPU Model: ${cpus[0].model}`);
         console.log(`Number of Cores: ${cpus.length}`);
         cpus.forEach((cpu, index) =>
-          console.log(`Core #${index + 1} clock rate: ${cpu.speed / 1000}`)
+          console.log(`Core #${index + 1} clock rate: ${cpu.speed / 1000} GHz`)
         );
       }
       break;
