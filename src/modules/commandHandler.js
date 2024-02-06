@@ -3,6 +3,7 @@ import changeDir from "./changeDir.js";
 import listFiles from "./listFiles.js";
 import catenate from "./catenate.js";
 import createFile from "./createFile.js";
+import renameFile from "./renameFile.js";
 
 async function commandHandler(command) {
   if (command === ".exit") return false;
@@ -14,6 +15,9 @@ async function commandHandler(command) {
         break;
       case 2:
         await twoParamHandler(params);
+        break;
+      case 3:
+        await threeParamHandler(params);
         break;
       default:
         console.log("Invalid input");
@@ -55,6 +59,21 @@ async function twoParamHandler(params) {
         break;
       case "add":
         await createFile(params[1]);
+        break;
+      default:
+        console.log("Invalid input");
+        break;
+    }
+  } catch (error) {
+    console.log("Operation failed");
+  }
+}
+
+async function threeParamHandler(params) {
+  try {
+    switch (params[0]) {
+      case "rn":
+        await renameFile(params[1], params[2]);
         break;
       default:
         console.log("Invalid input");
